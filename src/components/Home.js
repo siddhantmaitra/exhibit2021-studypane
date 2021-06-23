@@ -2,18 +2,36 @@ import PrimarySearchAppBar from "./Appbar";
 import MiniDrawer from "./Sidebar";
 import Tasks from "./Tasks";
 import Timer from "./Timer";
+import Workspace from "./Workspace";
 import Grid from "@material-ui/core/Grid";
 import { Typography } from "@material-ui/core";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  toolbar: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "flex-end",
+    padding: theme.spacing(0, 1),
+    // necessary for content to be below app bar
+    ...theme.mixins.toolbar,
+  },
+  content: {
+    flexGrow: 1,
+    padding: theme.spacing(3),
+    paddingLeft: "6em",
+  },
+}));
 
 const Home = () => {
+  const classes = useStyles();
+
   return (
     <div>
       <PrimarySearchAppBar />
       <MiniDrawer />
-      <div
-        className="content"
-        style={{ paddingTop: "5%", paddingLeft: "7%", paddingRight: "1%" }}
-      >
+      <main className={classes.content}>
+        <div className={classes.toolbar} />
         <Grid container spacing={2}>
           <Grid item xs={12}>
             <div>
@@ -28,26 +46,21 @@ const Home = () => {
             </div>
           </Grid>
           <Grid item xs={9}>
-            <Grid container direction="column">
+            <Grid container direction="column" spacing={2}>
               <Grid item xs={12}>
                 <div>
                   <Timer />
                 </div>
               </Grid>
               <Grid item xs={12}>
-                <div style={{ backgroundColor: "yellow" }}>
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Aspernatur fugit ab voluptatem quae eos! Amet at magni
-                    dolorum velit nisi minima animi explicabo architecto quidem,
-                    voluptatum maiores tenetur necessitatibus. Dicta.
-                  </p>
+                <div>
+                  <Workspace />
                 </div>
               </Grid>
             </Grid>
           </Grid>
         </Grid>
-      </div>
+      </main>
     </div>
   );
 };

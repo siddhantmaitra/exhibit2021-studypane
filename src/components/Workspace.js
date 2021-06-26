@@ -7,6 +7,9 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
+import IconButton from "@material-ui/core/IconButton";
+import { Delete, SaveAlt } from "@material-ui/icons";
+import Toolbar from "@material-ui/core/Toolbar";
 import ScratchPad from "./ScratchPad";
 
 function TabPanel(props) {
@@ -44,8 +47,19 @@ function a11yProps(index) {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: theme.palette.background.paper,
+    // backgroundColor: theme.palette.background.paper,
     width: "100%",
+    border: "1px solid black",
+  },
+  tabs: {
+    display: "inline",
+    width: "50%",
+    boxShadow: "none",
+  },
+  icons: {
+    display: "inline",
+    width: "50%",
+    textAlign: "right",
   },
 }));
 
@@ -64,17 +78,29 @@ const Workspace = () => {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" color="default">
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          indicatorColor="primary"
-          textColor="primary"
-          centered
-        >
-          <Tab label="Item One" {...a11yProps(0)} />
-          <Tab label="Item Two" {...a11yProps(1)} />
-        </Tabs>
+      <AppBar position="static" color="default" elevation={0}>
+        <Toolbar style={{}}>
+          <div className={classes.tabs}>
+            <Tabs
+              value={value}
+              onChange={handleChange}
+              indicatorColor="primary"
+              textColor="primary"
+              // centered
+            >
+              <Tab label="Scribble Pad" {...a11yProps(0)} />
+              <Tab label="Canvas" {...a11yProps(1)} />
+            </Tabs>
+          </div>
+          <div className={classes.icons}>
+            <IconButton>
+              <SaveAlt />
+            </IconButton>
+            <IconButton>
+              <Delete />
+            </IconButton>
+          </div>
+        </Toolbar>
       </AppBar>
       <SwipeableViews
         axis={theme.direction === "rtl" ? "x-reverse" : "x"}

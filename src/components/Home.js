@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     padding: theme.spacing(3),
     paddingLeft: "6em",
+    paddingRight: "5em",
   },
 }));
 
@@ -27,7 +28,7 @@ const Home = () => {
   const classes = useStyles();
 
   return (
-    <div>
+    <div style={{ background: "F7" }}>
       <PrimarySearchAppBar />
       <MiniDrawer />
       <main className={classes.content}>

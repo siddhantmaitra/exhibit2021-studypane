@@ -1,9 +1,21 @@
-import Home from "./components/Home";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Landing from "./components/Landing";
+import OfflineHome from "./components/OfflineHome";
+
 function App() {
   return (
-    <>
-      <Home />
-    </>
+    <div className="App">
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <Landing />
+          </Route>
+          <Route exact path="/Offhome">
+            <OfflineHome />
+          </Route>
+        </Switch>
+      </Router>
+    </div>
   );
 }
 

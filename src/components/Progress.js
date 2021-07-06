@@ -1,9 +1,9 @@
 const Progress = ({ done }) => {
   return (
     <>
-      <h6>In this session you have completed:</h6>
-      <h6>{done} tasks!</h6>
-      <h6>{done} sets of Deep Work!</h6>
+      <h4>In this session you have completed:</h4>
+      <h4>{done} tasks!</h4>
+      <h4>{done} sets of Deep Work!</h4>
     </>
   );
 };

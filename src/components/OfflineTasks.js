@@ -2,9 +2,14 @@ import { useEffect, useState } from "react";
 import TaskForm from "./TaskForm";
 import TaskList from "./TaskList";
 
-const OfflineTasks = ({ setDone, setTbd }) => {
+const OfflineTasks = ({ setDoneTasks, setTbd }) => {
   const [tasks, setTasks] = useState([]);
   const [open, setOpen] = useState(false);
+
+  const handleDelete = (id) => {
+    const newTasks = tasks.filter((task) => task.id !== id);
+    setTasks(newTasks);
+  };
 
   const handleComplete = (id) => {
     setTasks(
@@ -30,20 +35,27 @@ const OfflineTasks = ({ setDone, setTbd }) => {
         tcnt++;
       }
     });
-    setDone(dcnt);
+    setDoneTasks(dcnt);
     setTbd(tcnt);
   }, [tasks]);
 
   return (
     <>
       <h6>Your Tasks:</h6>
-      <button
-        onClick={() => {
-          setOpen(true);
-        }}
-      >
-        Add task
-      </button>
+      <TaskList
+        tasks={tasks}
+        handleDelete={handleDelete}
+        handleComplete={handleComplete}
+      />
+      {!open && (
+        <button
+          onClick={() => {
+            setOpen(true);
+          }}
+        >
+          Add task
+        </button>
+      )}
       <div className="modal" style={{ display: open ? "block" : "none" }}>
         <button
           onClick={() => {
@@ -54,7 +66,6 @@ const OfflineTasks = ({ setDone, setTbd }) => {
         </button>
         <TaskForm tasks={tasks} setTasks={setTasks} setOpen={setOpen} />
       </div>
-      <TaskList tasks={tasks} handleComplete={handleComplete} />
     </>
   );
 };

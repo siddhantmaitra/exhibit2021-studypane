@@ -1,0 +1,226 @@
+
+//MIXINS & Variables//
+
+@mixin boxtheme{
+    box-shadow:0px 2px 5px 0px #888888;
+    margin: .4em;
+    border-radius: 11px;
+    background-color: #ffffff; 
+    padding:2px;
+}
+
+@mixin bttnstyle{
+    float:right;
+    padding:5px;
+    // border:1px solid black;
+    text-align: center;
+    margin: 2px;
+    
+    
+}
+
+@mixin pclayout{
+    margin-left: 10px;
+    margin-right: 10px;
+    display:grid;
+    height: 100vh;
+    grid-template-rows:0.1fr 0.1fr 1fr 0.1fr; //I dont get this shit,but works
+    //grid-template-rows:repeat(4,1fr);
+    grid-template-columns: 0.6fr 1.5fr 0.1fr;
+    grid-template-areas: 
+        "appbar appbar appbar"
+        "navbar navbar navbar"
+        "left-container right-container right-container"
+        ". . footie";
+
+}
+
+@mixin responsivelayout{
+    display:block;
+    margin:10px;
+    /* display:grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(5,1fr);
+    grid-template-areas: 
+        "appbar"
+        "navbar"
+        "left container"
+        "right container"
+        "footie";
+    */      
+}
+
+
+
+
+
+
+// MAIN GRID CONTAINER//
+.wrapper{
+    @include responsivelayout;
+    margin: none;
+    
+} 
+// APP BAR DECORATION//
+.appbar{
+    grid-area:appbar;
+    display:grid;
+    grid-template-columns: 1fr 1.5fr;
+}
+
+.solobttn{
+   @include bttnstyle;
+   
+}
+
+.themebttn{
+    @include bttnstyle;
+}
+
+.mebttn{
+    @include bttnstyle;
+}
+
+//SHARE BUTTON 
+.sharebttn{
+    @include bttnstyle;
+    border:none
+}
+
+
+.chatbttn{
+    width: 60px;
+    height: 60px;
+    background-color: red;
+    border-radius: 50%;
+    box-shadow: 0 6px 10px 0 #666;
+    
+    font-size: 40px;
+    line-height: 60px;
+    color: white;
+    text-align: center;
+    
+    position: fixed;
+    right: 1vw;
+    bottom: 1vh;
+    
+   transition: all 0.1s ease-in-out;
+}
+ 
+.chatbttn:hover {
+    box-shadow: 0 6px 14px 0 #666;
+    transform: scale(1.05);
+}
+
+
+//MAIN APP STARTS FROM HERE//
+//SESSION NAME//
+.navbar{
+    @include boxtheme;
+    grid-area:navbar;
+    display:grid;
+    grid-template-columns: 95% 5%;
+    text-align: center;
+    background-color: #73BC67;
+
+    div{
+        text-align: center;
+    }
+
+}
+//INTERACTIVE SECTION//
+
+//MAIN CONTAINERS//
+.left-container{
+    
+    grid-area:left-container;
+    display:grid;
+    grid-template-rows: 2;
+    grid-template-areas: "tasks" "tasks";//add "board here for co op mode"
+    
+}
+
+.right-container{ 
+    grid-area:right-container;
+    display:grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: "prog" "timer" "scribble";
+    
+}
+
+
+.rcontchild{
+    display:grid;
+    grid-template-columns: auto;
+    grid-template-rows: 2;
+    grid-template-areas: "prog" "timer";
+}
+
+//COMPONENTS
+.tasks{
+    @include boxtheme;
+    grid-area:tasks;
+    box-sizing: border-box;
+    /* max-width: 400px;
+    min-width:340px;
+     */
+}
+.board{
+    @include boxtheme;
+    grid-area:board;
+    box-sizing: border-box;
+    width:minmax(400px,450px);
+    
+}
+.prog{
+    @include boxtheme;
+    grid-area:prog;
+    
+}
+.timer{
+    @include boxtheme;
+    grid-area:timer;
+}
+.scribble{
+    @include boxtheme;
+    grid-area:scribble;
+}
+
+.footie{
+    margin: .4em;
+    border-radius: 11px;
+    // padding:2px;
+    grid-area:footie;
+}
+
+//MEDIA QUERY
+@media (min-width: 768px) and (min-width:992px){
+    .wrapper{
+    @include pclayout
+    
+    }
+    .right-container{
+        grid-template-columns: 1fr;
+        grid-template-rows: 0.2fr 1fr;
+        grid-template-areas: 
+        "rcontchild"
+        "scribble";
+    }
+    .rcontchild{
+        grid-area:rcontchild;
+        display:grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: "prog timer";
+        box-sizing: border-box;
+    }
+    
+    .tasks{
+        max-width: auto;
+        min-width: 400px;
+        box-sizing: border-box;
+    }
+
+  
+}
+

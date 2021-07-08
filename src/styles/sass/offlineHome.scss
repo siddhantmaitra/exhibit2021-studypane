@@ -1,12 +1,8 @@
-
-//MIXINS & Variables//
-
 @mixin boxtheme{
     box-shadow:0px 2px 5px 0px #888888;
     margin: .4em;
     border-radius: 11px;
-    background-color: #ffffff; 
-    padding:2px;
+    background-color: white;
 }
 
 @mixin bttnstyle{
@@ -19,74 +15,103 @@
     
 }
 
-@mixin pclayout{
-    margin-left: 10px;
-    margin-right: 10px;
-    display:grid;
-    height: 100vh;
-    grid-template-rows:0.1fr 0.1fr 1fr 0.1fr; //I dont get this shit,but works
-    //grid-template-rows:repeat(4,1fr);
-    grid-template-columns: 0.6fr 1.5fr 0.1fr;
-    grid-template-areas: 
-        "appbar appbar appbar"
-        "navbar navbar navbar"
-        "left-container right-container right-container"
-        ". . footie";
-
-}
-
-@mixin responsivelayout{
+@mixin phonelayout{
     display:block;
-    margin:10px;
-    /* display:grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(5,1fr);
-    grid-template-areas: 
-        "appbar"
-        "navbar"
-        "left container"
-        "right container"
-        "footie";
-    */      
+    padding-left:0.2em;
+    padding-right: 0.2em;;
 }
 
 
+@mixin pclayout {
+    display:grid;
+    grid-template-rows: 1 fr 1fr;
+    grid-template-columns: 0.1fr 0.5fr 1fr 0.1fr;
+    grid-template-areas:
+        "appbar appbar appbar appbar"
+        "navbar navbar navbar navbar "
+        ". left-container right-container ."
+        "footie footie footie footie"
+        "credit credit credit credit";
 
-
-
-
-// MAIN GRID CONTAINER//
-.wrapper{
-    @include responsivelayout;
-    margin: none;
     
-} 
-// APP BAR DECORATION//
+}
+
+h2{ 
+    text-align: center;
+    justify-content: center;
+}
+h1, h2, h3, h4{
+    margin:0;
+    padding:0.5em;
+    
+    //width: auto;
+}
+// .left-container, .right-container, .rcontchild{
+//     margin: .4em;
+// }
+
+.wrapper{
+    min-height: 100vh;
+    background-color:beige;
+    @include phonelayout;
+    
+}
+
+
+.navbar, .tasks,.board, .prog, .timer, .scribble{
+    @include boxtheme;
+}
+
+
+.logotext, .meeting{
+    margin:0;
+    padding:.3rem;
+}
 .appbar{
     grid-area:appbar;
-    display:grid;
-    grid-template-columns: 1fr 1.5fr;
+    .logo, .appbar-bttn{
+        display:inline-block;   
+    }
+    .appbar-bttn{
+        float: right;
+    }
 }
 
-.solobttn{
-   @include bttnstyle;
+.navbar{
+    grid-area:navbar;
+    display:grid;
+    grid-template-columns: 95% 5%;
+    text-align: center;
+    background-color: #73BC67;
+    
+    .sharebttn{
+        @include bttnstyle;
+        border:none
+    }
+    div{
+        text-align: center;
+        margin:0;
+    }
    
 }
-
-.themebttn{
-    @include bttnstyle;
+.prog{
+    grid-area:prog;
+    // text-align: center;
+}
+.timer{
+    grid-area:timer;
+}
+.scribble{
+    grid-area:scribble;
+}
+.footie{
+    grid-area:footie;
+    border:0;
 }
 
-.mebttn{
-    @include bttnstyle;
+.credit{
+    grid-area:credit;
 }
-
-//SHARE BUTTON 
-.sharebttn{
-    @include bttnstyle;
-    border:none
-}
-
 
 .chatbttn{
     width: 60px;
@@ -101,8 +126,8 @@
     text-align: center;
     
     position: fixed;
-    right: 1vw;
-    bottom: 1vh;
+    right: 1rem;
+    bottom: 1rem;
     
    transition: all 0.1s ease-in-out;
 }
@@ -112,115 +137,28 @@
     transform: scale(1.05);
 }
 
-
-//MAIN APP STARTS FROM HERE//
-//SESSION NAME//
-.navbar{
-    @include boxtheme;
-    grid-area:navbar;
-    display:grid;
-    grid-template-columns: 95% 5%;
-    text-align: center;
-    background-color: #73BC67;
-
-    div{
-        text-align: center;
-    }
-
-}
-//INTERACTIVE SECTION//
-
-//MAIN CONTAINERS//
-.left-container{
-    
-    grid-area:left-container;
-    display:grid;
-    grid-template-rows: 2;
-    grid-template-areas: "tasks" "tasks";//add "board here for co op mode"
-    
-}
-
-.right-container{ 
-    grid-area:right-container;
-    display:grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-    grid-template-areas: "prog" "timer" "scribble";
-    
-}
-
-
-.rcontchild{
-    display:grid;
-    grid-template-columns: auto;
-    grid-template-rows: 2;
-    grid-template-areas: "prog" "timer";
-}
-
-//COMPONENTS
-.tasks{
-    @include boxtheme;
-    grid-area:tasks;
-    box-sizing: border-box;
-    /* max-width: 400px;
-    min-width:340px;
-     */
-}
-.board{
-    @include boxtheme;
-    grid-area:board;
-    box-sizing: border-box;
-    width:minmax(400px,450px);
-    
-}
-.prog{
-    @include boxtheme;
-    grid-area:prog;
-    
-}
-.timer{
-    @include boxtheme;
-    grid-area:timer;
-}
-.scribble{
-    @include boxtheme;
-    grid-area:scribble;
-}
-
-.footie{
-    margin: .4em;
-    border-radius: 11px;
-    // padding:2px;
-    grid-area:footie;
-}
-
-//MEDIA QUERY
-@media (min-width: 768px) and (min-width:992px){
+@media screen and (min-width:780px){
     .wrapper{
-    @include pclayout
-    
+
+        @include pclayout;
+
+    }
+    .left-container{
+        grid-area:left-container;
+        display:grid;
+        grid-template-rows: 2;
+        grid-area:"tasks" "tasks";
     }
     .right-container{
-        grid-template-columns: 1fr;
-        grid-template-rows: 0.2fr 1fr;
-        grid-template-areas: 
-        "rcontchild"
-        "scribble";
-    }
-    .rcontchild{
-        grid-area:rcontchild;
-        display:grid;
+        grid-area:right-container;
+        display: grid;
         grid-template-columns: 1fr 1fr;
-        grid-template-areas: "prog timer";
-        box-sizing: border-box;
-    }
-    
-    .tasks{
-        max-width: auto;
-        min-width: 400px;
-        box-sizing: border-box;
+        grid-template-rows: 0.5fr 1.5fr;
+        grid-template-areas:
+            "prog timer"
+            "scribble scribble";
+
     }
 
-  
+
 }
-

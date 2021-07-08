@@ -1,4 +1,6 @@
 import React from "react";
+import "../styles/css/timer.css";
+
 class Timer extends React.Component {
   constructor(props) {
     super(props);
@@ -234,83 +236,19 @@ class Timer extends React.Component {
 
   render() {
     return (
-      <div>
-        <h6>Timer:</h6>
-        <div>
-          <div>
-            <p>Break Length (min:1 max:60)</p>
-            <div>
-              <div>
-                <button
-                  onClick={this.breakDecrement}
-                  disabled={this.state.disableInput}
-                >
-                  -
-                </button>
-              </div>
-              <div>
-                {/* <p id="break-length">{this.state.breakLength}</p> */}
-                <input
-                  value={this.state.breakLength}
-                  disabled={this.state.disableInput}
-                  type="number"
-                  onChange={this.breakInput}
-                />
-              </div>
-              <div>
-                <button
-                  onClick={this.breakIncrement}
-                  disabled={this.state.disableInput}
-                >
-                  +
-                </button>
-              </div>
-            </div>
-          </div>
+      <div className="clock">  {/* START of timer clock*/}
+        <div><h4>Timer:</h4></div>
+        <div className= "countdown"> {/* START of countdown section*/}
+          <p className="timerheaders">{this.state.timerType}</p>
 
-          <div>
-            <p>Session Length (min:1 max:60)</p>
-            <div>
-              <div>
-                <button
-                  onClick={this.sessionDecrement}
-                  disabled={this.state.disableInput}
-                >
-                  -
-                </button>
-              </div>
-              <div>
-                {/* <p id="session-length">{this.state.sessionLength}</p> */}
-                <input
-                  disabled={this.state.disableInput}
-                  type="number"
-                  value={this.state.sessionLength}
-                  onChange={this.sessionInput}
-                />
-              </div>
-              <div>
-                <button
-                  onClick={this.sessionIncrement}
-                  disabled={this.state.disableInput}
-                >
-                  +
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div>
-          <p>{this.state.timerType}</p>
-
-          <div>
+          <div className="timerheaders">
             {this.state.minutes < 10
               ? "0" + this.state.minutes
               : this.state.minutes}
             :
             {this.state.seconds < 10
               ? "0" + this.state.seconds
-              : this.state.seconds}
+              : this.state.seconds} 
           </div>
 
           <div>
@@ -324,14 +262,80 @@ class Timer extends React.Component {
               <div>Congrats you completed 1 set of Deep Work!</div>
             )}
 
-            <audio
+            {/* <audio
               ref="beepSound"
               id="beep"
               src="https://bobmatyas.github.io/fcc-pomodoro-clock/sounds/beep.mp3"
-            />
+            /> */}
           </div>
-        </div>
+        </div> {/* END of countdown section*/}
+        <div className="settings"> {/* START of timer settings*/}
+
+          <div className="setbreak"> {/* START of div for break settings*/}
+            
+            
+            <p className="timerheaders">Break</p>
+            
+            <div className="settingbttn">{/* START of div for break buttons*/}
+              <button
+                onClick={this.breakIncrement}
+                disabled={this.state.disableInput}
+              >
+                +
+              </button>
+             {/* START of div for break settings input*/} {/* <p id="session-length">{this.state.sessionLength}</p> */}  
+             <input className="timerinput"
+                disabled={this.state.disableInput}
+                type="number"
+                value={this.state.breakLength}
+                onChange={this.sessionInput}
+              />  
+              <button
+                onClick={this.breakDecrement}
+                disabled={this.state.disableInput}
+              >
+                -
+              </button> {/* END of div for break buttons*/}
+            </div>
+    
+          </div>
+
+          <div className="setwork"> {/* START of div for work settings*/}
+            
+            
+            <p className="timerheaders">Session</p>
+            
+            
+            <div className="settingbttn">{/* START of div for work buttons*/}
+              <button
+                onClick={this.sessionIncrement}
+                disabled={this.state.disableInput}
+              >
+                +
+              </button>
+               {/* START of div for work settings input*/} {/* <p id="session-length">{this.state.sessionLength}</p> */}  
+              <input className="timerinput"
+                disabled={this.state.disableInput}
+                type="number"
+                value={this.state.sessionLength}
+                onChange={this.sessionInput}
+              />
+              <button
+                onClick={this.sessionDecrement}
+                disabled={this.state.disableInput}
+              >
+                -
+              </button> {/* END of div for work buttons*/}
+            </div>
+    
+          </div>
+          
+          
+        </div> {/* END of timer settings*/}
+
+        
       </div>
+
     );
   }
 }

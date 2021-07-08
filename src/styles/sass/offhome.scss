@@ -1,0 +1,164 @@
+@mixin boxtheme{
+    box-shadow:0px 2px 5px 0px #888888;
+    margin: .4em;
+    border:1px solid #000;
+    background-color: white;
+}
+
+@mixin bttnstyle{
+    float:right;
+    padding:5px;
+    // border:1px solid black;
+    text-align: center;
+    margin: 2px;
+    
+    
+}
+
+@mixin phonelayout{
+    display:block;
+    padding-left:0.2em;
+    padding-right: 0.2em;;
+}
+
+
+@mixin pclayout {
+    display:grid;
+    grid-template-rows: 1 fr 1fr;
+    grid-template-columns: 0.1fr 0.5fr 1fr 0.1fr;
+    grid-template-areas:
+        "appbar appbar appbar appbar"
+        "navbar navbar navbar navbar "
+        ". left-container right-container ."
+        "footie footie footie footie"
+        "credit credit credit credit";
+
+    
+}
+
+h2{ 
+    text-align: center;
+    justify-content: center;
+}
+h1, h2, h3, h4{
+    margin:0;
+    padding-top:1rem;
+    
+    //width: auto;
+}
+// .left-container, .right-container, .rcontchild{
+//     margin: .4em;
+// }
+
+.wrapper{
+    min-height: 100vh;
+    background-color:beige;
+    @include phonelayout;
+    
+}
+
+
+.navbar, .tasks,.board, .prog, .timer, .scribble{
+    @include boxtheme;
+}
+
+
+.logotext, .meeting{
+    margin:0;
+    padding:.3rem;
+}
+.appbar{
+    grid-area:appbar;
+    .logo, .appbar-bttn{
+        display:inline-block;   
+    }
+    .appbar-bttn{
+        float: right;
+    }
+}
+
+.navbar{
+    grid-area:navbar;
+    display:grid;
+    grid-template-columns: 95% 5%;
+    text-align: center;
+    background-color: #73BC67;
+    
+    .sharebttn{
+        @include bttnstyle;
+        border:none
+    }
+    div{
+        text-align: center;
+        margin:0;
+    }
+   
+}
+.prog{
+    grid-area:prog;
+    // text-align: center;
+}
+.timer{
+    grid-area:timer;
+}
+.scribble{
+    grid-area:scribble;
+}
+.footie{
+    grid-area:footie;
+    border:0;
+}
+
+.credit{
+    grid-area:credit;
+}
+
+.chatbttn{
+    width: 60px;
+    height: 60px;
+    background-color: red;
+    border-radius: 50%;
+    box-shadow: 0 6px 10px 0 #666;
+    
+    font-size: 40px;
+    line-height: 60px;
+    color: white;
+    text-align: center;
+    
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    
+   transition: all 0.1s ease-in-out;
+}
+ 
+.chatbttn:hover {
+    box-shadow: 0 6px 14px 0 #666;
+    transform: scale(1.05);
+}
+
+@media screen and (min-width:780px){
+    .wrapper{
+
+        @include pclayout;
+
+    }
+    .left-container{
+        grid-area:left-container;
+        display:grid;
+        grid-template-rows: 2;
+        grid-area:"tasks" "tasks";
+    }
+    .right-container{
+        grid-area:right-container;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 0.5fr 1.5fr;
+        grid-template-areas:
+            "prog timer"
+            "scribble scribble";
+
+    }
+
+
+}

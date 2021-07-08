@@ -41,7 +41,7 @@ const OfflineTasks = ({ setDoneTasks, setTbd }) => {
 
   return (
     <>
-      <h6>Your Tasks:</h6>
+      <h4>Your Tasks:</h4>
       <TaskList
         tasks={tasks}
         handleDelete={handleDelete}

@@ -15,10 +15,10 @@ const ScribblePad = () => {
 
   return (
     <div>
-      <h6>Scribble Pad</h6>
+      <h4>Scribble Pad</h4>
       <textarea
         spellCheck="false"
-        placeholder="Start writing your notes here..."
+        placeholder="Need to remember something? Note it here!"
         onChange={(e) => {
           setContent(e.target.value);
           counting();
@@ -43,8 +43,8 @@ const ScribblePad = () => {
           </li>
         </ul>
       </footer> */}
-      <p>{charCnt} :chars</p>
-      <p>{wordCnt} :words</p>
+      {/* <p>{charCnt} :chars</p>
+      <p>{wordCnt} :words</p> */}
     </div>
   );
 };

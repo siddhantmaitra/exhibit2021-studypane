@@ -3,7 +3,7 @@ import OfflineTasks from "./OfflineTasks";
 import Progress from "./Progress";
 import Timer from "./Timer";
 import ScribblePad from "./ScribblePad";
-import "../styles/css/offlineHome.css";
+import "../styles/css/offhome.css";
 
 const OfflineHome = () => {
   const [doneTasks, setDoneTasks] = useState(0);
@@ -14,7 +14,7 @@ const OfflineHome = () => {
     <div className="wrapper">
         <div className="appbar">
             <div className="logo">
-            <h2 className="logotext">StudyPane</h2>
+            <h3 className="logotext">StudyPane</h3>
             </div>
 
             <div className="appbar-bttn">

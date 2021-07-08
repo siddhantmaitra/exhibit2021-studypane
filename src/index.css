@@ -35,3 +35,11 @@ input[type="number"]::-webkit-inner-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
+
+html {
+  height: 100vh;
+}
+body, #root{
+  height: 100vh;
+  min-height: 100vh;
+}

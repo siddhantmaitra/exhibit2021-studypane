@@ -1,14 +1,10 @@
 import { useState } from "react";
-import { v4 as uuid } from "uuid";
 
-const TaskForm = ({ tasks, setTasks, setOpen }) => {
+const TaskForm = ({ handleAddTask }) => {
   const [input, setInput] = useState("");
   const handleSubmit = (e) => {
-    e.preventDefault();
-    setTasks([...tasks, { id: uuid(), title: input, status: false }]);
+    handleAddTask(e, input);
     setInput("");
-    e.target.reset();
-    setOpen(false);
   };
 
   return (

@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import TaskForm from "./TaskForm";
 import TaskList from "./TaskList";
+import { v4 as uuid } from "uuid";
 
-const OfflineTasks = ({ setDoneTasks, setTbd }) => {
+const OfflineTasks = ({ setDoneTasks }) => {
   const [tasks, setTasks] = useState([]);
   const [open, setOpen] = useState(false);
 
@@ -11,10 +12,10 @@ const OfflineTasks = ({ setDoneTasks, setTbd }) => {
     setTasks(newTasks);
   };
 
-  const handleComplete = (id) => {
+  const handleComplete = (selectedTask) => {
     setTasks(
       tasks.map((task) => {
-        if (task.id === id) {
+        if (task.id === selectedTask.id) {
           return {
             ...task,
             status: !task.status,
@@ -25,18 +26,21 @@ const OfflineTasks = ({ setDoneTasks, setTbd }) => {
     );
   };
 
+  const handleAddTask = (e, input) => {
+    e.preventDefault();
+    setTasks([...tasks, { id: uuid(), title: input, status: false }]);
+    e.target.reset();
+    setOpen(false);
+  };
+
   useEffect(() => {
-    var dcnt = 0;
-    var tcnt = 0;
+    var cnt = 0;
     tasks.forEach((task) => {
       if (task.status) {
-        dcnt++;
-      } else {
-        tcnt++;
+        cnt++;
       }
     });
-    setDoneTasks(dcnt);
-    setTbd(tcnt);
+    setDoneTasks(cnt);
   }, [tasks]);
 
   return (
@@ -64,7 +68,7 @@ const OfflineTasks = ({ setDoneTasks, setTbd }) => {
         >
           Close
         </button>
-        <TaskForm tasks={tasks} setTasks={setTasks} setOpen={setOpen} />
+        <TaskForm handleAddTask={handleAddTask} />
       </div>
     </>
   );

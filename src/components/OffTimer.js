@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/css/timer.css";
 
-class Timer extends React.Component {
+class OffTimer extends React.Component {
   constructor(props) {
     super(props);
 
@@ -236,11 +236,16 @@ class Timer extends React.Component {
 
   render() {
     return (
-      <div className="clock">  {/* START of timer clock*/}
-        <div><h4>Timer:</h4></div>
-        <div className= "countdown"> {/* START of countdown section*/}
+      <div className="clock">
+        {" "}
+        {/* START of timer clock*/}
+        <div>
+          <h4>Timer:</h4>
+        </div>
+        <div className="countdown">
+          {" "}
+          {/* START of countdown section*/}
           <p className="timerheaders">{this.state.timerType}</p>
-
           <div className="timerheaders">
             {this.state.minutes < 10
               ? "0" + this.state.minutes
@@ -248,9 +253,8 @@ class Timer extends React.Component {
             :
             {this.state.seconds < 10
               ? "0" + this.state.seconds
-              : this.state.seconds} 
+              : this.state.seconds}
           </div>
-
           <div>
             <button onClick={this.timerControl}>
               {/* {this.state.timerStatus === "" ? "Start" : "Pause"}{" "} */}
@@ -268,53 +272,57 @@ class Timer extends React.Component {
               src="https://bobmatyas.github.io/fcc-pomodoro-clock/sounds/beep.mp3"
             /> */}
           </div>
-        </div> {/* END of countdown section*/}
-        <div className="settings"> {/* START of timer settings*/}
-
-          <div className="setbreak"> {/* START of div for break settings*/}
-            
-            
+        </div>{" "}
+        {/* END of countdown section*/}
+        <div className="settings">
+          {" "}
+          {/* START of timer settings*/}
+          <div className="setbreak">
+            {" "}
+            {/* START of div for break settings*/}
             <p className="timerheaders">Break</p>
-            
-            <div className="settingbttn">{/* START of div for break buttons*/}
+            <div className="settingbttn">
+              {/* START of div for break buttons*/}
               <button
                 onClick={this.breakIncrement}
                 disabled={this.state.disableInput}
               >
                 +
               </button>
-             {/* START of div for break settings input*/} {/* <p id="session-length">{this.state.sessionLength}</p> */}  
-             <input className="timerinput"
+              {/* START of div for break settings input*/}{" "}
+              {/* <p id="session-length">{this.state.sessionLength}</p> */}
+              <input
+                className="timerinput"
                 disabled={this.state.disableInput}
                 type="number"
                 value={this.state.breakLength}
                 onChange={this.sessionInput}
-              />  
+              />
               <button
                 onClick={this.breakDecrement}
                 disabled={this.state.disableInput}
               >
                 -
-              </button> {/* END of div for break buttons*/}
+              </button>{" "}
+              {/* END of div for break buttons*/}
             </div>
-    
           </div>
-
-          <div className="setwork"> {/* START of div for work settings*/}
-            
-            
+          <div className="setwork">
+            {" "}
+            {/* START of div for work settings*/}
             <p className="timerheaders">Session</p>
-            
-            
-            <div className="settingbttn">{/* START of div for work buttons*/}
+            <div className="settingbttn">
+              {/* START of div for work buttons*/}
               <button
                 onClick={this.sessionIncrement}
                 disabled={this.state.disableInput}
               >
                 +
               </button>
-               {/* START of div for work settings input*/} {/* <p id="session-length">{this.state.sessionLength}</p> */}  
-              <input className="timerinput"
+              {/* START of div for work settings input*/}{" "}
+              {/* <p id="session-length">{this.state.sessionLength}</p> */}
+              <input
+                className="timerinput"
                 disabled={this.state.disableInput}
                 type="number"
                 value={this.state.sessionLength}
@@ -325,19 +333,15 @@ class Timer extends React.Component {
                 disabled={this.state.disableInput}
               >
                 -
-              </button> {/* END of div for work buttons*/}
+              </button>{" "}
+              {/* END of div for work buttons*/}
             </div>
-    
           </div>
-          
-          
-        </div> {/* END of timer settings*/}
-
-        
+        </div>{" "}
+        {/* END of timer settings*/}
       </div>
-
     );
   }
 }
 
-export default Timer;
+export default OffTimer;

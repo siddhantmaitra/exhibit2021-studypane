@@ -12,7 +12,7 @@ const TaskList = ({ tasks, handleComplete, handleDelete }) => {
           {task.title}
           <button
             onClick={() => {
-              handleComplete(task.id);
+              handleComplete(task);
             }}
           >
             done

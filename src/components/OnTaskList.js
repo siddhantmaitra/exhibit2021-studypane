@@ -1,11 +1,17 @@
-const OnTaskList = ({ tasks, handleComplete, handleDelete, roomId }) => {
+const OnTaskList = ({
+  tasks,
+  handleComplete,
+  handleDelete,
+  roomId,
+  currentUser,
+}) => {
   return (
     <ul
       className="tasklist"
       style={{ listStyleType: "none", maxHeight: "70%", overflow: "auto" }}
     >
       {tasks.map((task) => {
-        return roomId === task.room ? (
+        return roomId === task.room && task.ownerId === currentUser.uid ? (
           <li
             key={task.id}
             style={{ textDecoration: task.status ? "line-through" : "none" }}

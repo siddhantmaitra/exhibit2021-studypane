@@ -3,13 +3,13 @@ import { projectFirestore, timestamp } from "../Firebase/config";
 import TaskForm from "./TaskForm";
 import OnTaskList from "./OnTaskList";
 import { AuthContext } from "../contexts/AuthContext";
-import useFirestoreRead from "../hooks/useFirestore";
+import useFirestoreTask from "../hooks/useFirestoreTask";
 
 const OnTasks = ({ setDoneTasks }) => {
   const { currentUser, roomId } = useContext(AuthContext);
-  const { docs } = useFirestoreRead("tasks", currentUser.uid);
-  const [tasks, setTasks] = useState([]);
-
+  const { docs } = useFirestoreTask(currentUser.uid);
+  // const [tasks, setTasks] = useState([]);
+  const [taskNo, setTaskNo] = useState(0);
   const [open, setOpen] = useState(false);
 
   const handleAddTask = (e, input) => {
@@ -30,6 +30,16 @@ const OnTasks = ({ setDoneTasks }) => {
     projectFirestore.collection("tasks").doc(selectedTask.id).update({
       status: !selectedTask.status,
     });
+    if (!selectedTask.status) {
+      projectFirestore.collection("messages").add({
+        type: "status",
+        ownerId: currentUser.uid,
+        ownerName: currentUser.displayName,
+        roomId: roomId,
+        taskNo: taskNo + 1,
+        createdAt: timestamp(),
+      });
+    }
   };
 
   const handleDelete = (id) => {
@@ -39,17 +49,22 @@ const OnTasks = ({ setDoneTasks }) => {
   useEffect(() => {
     var cnt = 0;
     docs.forEach((task) => {
-      if (task.room === roomId && task.status) {
+      if (
+        task.room === roomId &&
+        task.status &&
+        task.ownerId === currentUser.uid
+      ) {
         cnt += 1;
       }
     });
     setDoneTasks(cnt);
+    setTaskNo(cnt);
 
-    docs.forEach((task) => {
-      if (task.room === roomId) {
-        setTasks([...tasks, task]);
-      }
-    });
+    // docs.forEach((task) => {
+    //   if (task.room === roomId && task.ownerId === currentUser.uid) {
+    //     setTasks([...tasks, task]);
+    //   }
+    // });
   }, [docs]);
 
   return (
@@ -60,6 +75,7 @@ const OnTasks = ({ setDoneTasks }) => {
         handleDelete={handleDelete}
         handleComplete={handleComplete}
         roomId={roomId}
+        currentUser={currentUser}
       />
 
       {!open && (

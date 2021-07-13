@@ -1,15 +1,17 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import OfflineTasks from "./OfflineTasks";
 import Progress from "./Progress";
 import OffTimer from "./OffTimer";
 import ScribblePad from "./ScribblePad";
 import "../styles/css/offlineHome.css";
 import { useHistory } from "react-router";
+import { AuthContext } from "../contexts/AuthContext";
 
 const OfflineHome = () => {
   const [doneTasks, setDoneTasks] = useState(0);
   const [doneDeep, setDoneDeep] = useState(0);
   const history = useHistory();
+  const { theme, setTheme } = useContext(AuthContext);
 
   return (
     <div className="wrapper">
@@ -30,11 +32,18 @@ const OfflineHome = () => {
           {/* <button className="solobttn" disabled>
                 Co-Op
             </button> */}
-          <button className="themebttn">Theme</button>
+          <button
+            className="themebttn"
+            onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+          >
+            Theme
+          </button>
         </div>
       </div>
 
-      <div className="navbar">
+      {/* <div className="navbar">  this will become like one below   */}
+      <div className={`navbar navbar-${theme}`}>
+        {/*navbar-light or navbar-dark */}
         <div>
           <h2 className="meeting">Demo Offline Session</h2>
         </div>

@@ -2,15 +2,15 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { projectFirestore } from "../Firebase/config";
 
-const useFirestoreRead = (collection, CurrentUserID) => {
+const useFirestoreAll = (CurrentUserID, colllection) => {
   const [docs, setDocs] = useState([]);
 
   useEffect(() => {
     if (CurrentUserID) {
       const unsub = projectFirestore
-        .collection(collection)
-        // .orderBy("createdAt", "desc")
+        .collection(colllection)
         .where("ownerId", "==", CurrentUserID)
+        // .orderBy("createdAt", "asc")
         .onSnapshot((snap) => {
           let documents = [];
           snap.forEach((doc) => {
@@ -20,8 +20,8 @@ const useFirestoreRead = (collection, CurrentUserID) => {
         });
       return () => unsub();
     }
-  }, [collection, CurrentUserID]);
+  }, [CurrentUserID, colllection]);
   return { docs };
 };
 
-export default useFirestoreRead;
+export default useFirestoreAll;

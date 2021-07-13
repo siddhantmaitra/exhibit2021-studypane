@@ -5,6 +5,8 @@ import Login from "./components/Login";
 import { AuthContextProvider } from "./contexts/AuthContext";
 import OnHome from "./components/OnHome";
 import Dashboard from "./components/Dashboard";
+import AboutUs from "./components/AboutUs";
+import PrivateRoute from "./PrivateRoute";
 
 function App() {
   return (
@@ -21,12 +23,17 @@ function App() {
             <Route exact path="/Login">
               <Login />
             </Route>
-            <Route exact path="/Dashboard">
+            <Route exact path="/About">
+              <AboutUs />
+            </Route>
+            {/* <Route exact path="/Dashboard">
               <Dashboard />
-            </Route>
-            <Route exact path="/Onhome">
+            </Route> */}
+            <PrivateRoute exact path="/Dashboard" component={Dashboard} />
+            {/* <Route exact path="/Onhome">
               <OnHome />
-            </Route>
+            </Route> */}
+            <PrivateRoute exact path="/Onhome" component={OnHome} />
           </Switch>
         </Router>
       </AuthContextProvider>

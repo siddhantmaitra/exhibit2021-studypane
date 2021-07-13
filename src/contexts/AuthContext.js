@@ -8,6 +8,7 @@ export const AuthContextProvider = (props) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [roomId, setRoomId] = useState("");
+  const [theme, setTheme] = useState("light");
 
   const signup = (email, password) => {
     return projectAuthentication.createUserWithEmailAndPassword(
@@ -52,6 +53,8 @@ export const AuthContextProvider = (props) => {
     setProfile,
     roomId,
     setRoomId,
+    theme,
+    setTheme,
   };
 
   return (

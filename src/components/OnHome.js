@@ -19,8 +19,8 @@ const OnHome = () => {
   const [shareModal, setShareModal] = useState(false);
   const [doneTasks, setDoneTasks] = useState(0);
   const [doneDeep, setDoneDeep] = useState(0);
-  // const [confModal, setConfModal] = useState(false);
-  // const [messagingModal, setMessagingModal] = useState(false);
+  const [confModal, setConfModal] = useState(false);
+  const [messagingModal, setMessagingModal] = useState(false);
   const history = useHistory();
   const admin = roomDetails.ownerId === currentUser.uid ? true : false;
 
@@ -80,10 +80,10 @@ const OnHome = () => {
         </div>
 
         <div className="appbar-bttn">
-          <button className="mebttn" onClick={() => history.push("/Dashboard")}>
+          <button className="mebttn" onClick={() => setConfModal(true)}>
             My Dashboard
           </button>
-          {/* {confModal && (
+          {confModal && (
             <div>
               <p>Do you really want to exit the room?</p>
               <button onClick={handleKill}>Yes</button>
@@ -94,8 +94,8 @@ const OnHome = () => {
               >
                 No
               </button>
-            </div> */}
-          {/* )} */}
+            </div>
+          )}
           {/* <button className="solobttn" disabled>
           Co-Op
       </button> */}
@@ -115,15 +115,10 @@ const OnHome = () => {
         </div>
         <div>
           {/* <button className="sharebttn">Share Room details</button> */}
-          <button
-            onClick={() => {
-              setShareModal(!shareModal);
-            }}
-          >
-            Share
-          </button>
+          <button onClick={() => setShareModal(true)}>Share</button>
           {shareModal && (
             <div>
+              <button onClick={() => setShareModal(false)}>Close</button>
               <input disabled value={roomId} />
               <CopyToClipboard
                 text={roomId}
@@ -133,7 +128,7 @@ const OnHome = () => {
               </CopyToClipboard>
             </div>
           )}
-          <button onClick={handleKill}>End</button>
+          {/* <button onClick={handleKill}>End</button> */}
         </div>
         {/* <a className="sharebttn">Share</a> */}
       </div>
@@ -145,9 +140,9 @@ const OnHome = () => {
         {/* <div>
           <LeaderBoard />
         </div> */}
-        <div className="tasks">
+        {/* <div className="tasks">
           <Messaging />
-        </div>
+        </div> */}
       </div>
 
       <div className="right-container">
@@ -180,15 +175,15 @@ const OnHome = () => {
       <div className="footie">
         <button
           className="chatbttn"
-          // onClick={() => {
-          //   setMessagingModal(!messagingModal);
-          // }}
+          onClick={() => {
+            setMessagingModal(!messagingModal);
+          }}
         >
           M
         </button>
       </div>
 
-      {/* {messagingModal && <div>Messaging Modal</div>} */}
+      {messagingModal && <Messaging />}
 
       <div className="credit">
         <p>

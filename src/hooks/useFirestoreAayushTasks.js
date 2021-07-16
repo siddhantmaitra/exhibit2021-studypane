@@ -2,8 +2,8 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { projectFirestore } from "../Firebase/config";
 
-const useFirestoreAll = (CurrentUserID, colllection) => {
-  const [docs, setDocs] = useState([]);
+const useFirestoreAayushTasks = (CurrentUserID, colllection) => {
+  const [tasks, setDocs] = useState([]);
 
   useEffect(() => {
     if (CurrentUserID) {
@@ -21,7 +21,7 @@ const useFirestoreAll = (CurrentUserID, colllection) => {
       return () => unsub();
     }
   }, [CurrentUserID, colllection]);
-  return { docs };
+  return { tasks };
 };
 
-export default useFirestoreAll;
+export default useFirestoreAayushTasks;

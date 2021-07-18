@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import { projectFirestore, timestamp } from "../Firebase/config";
 import useFirestoreMessage from "../hooks/useFirestoreMessage";
+import "../styles/css/messaging.css";
 
 const Messaging = () => {
   const { currentUser, roomId } = useContext(AuthContext);
@@ -23,8 +24,8 @@ const Messaging = () => {
     setFormValue("");
   };
   return (
-    <>
-      <div>
+    <div>
+      {/* <div>
         <h6>Status reports</h6>
         {docs.map((message) => {
           if (message.type === "status" && message.roomId === roomId)
@@ -35,32 +36,38 @@ const Messaging = () => {
             );
           else return null;
         })}
-      </div>
+      </div> */}
       <div>
-        <h6>Messages</h6>
-        {docs.map((message) => {
-          const messageClass =
-            message.ownerId === currentUser.uid ? "sent" : "recieved";
-          if (message.type === "message" && message.roomId === roomId)
-            return (
-              <div className={`xyzClass ${messageClass}`}>
-                <p>{message.ownerName}</p>
-                <p>{message.text}</p>
-              </div>
-            );
-          else return null;
-        })}
-        <form onSubmit={handleSend}>
-          <input
-            type="text"
-            value={formValue}
-            onChange={(e) => setFormValue(e.target.value)}
-            placeholder="Type your message here..."
-          />
-          <button type="submit">Send</button>
-        </form>
+        <div><p><h3 className="chatheader">Messages:</h3></p></div>
+        
+        <div className="chatdiv">
+          {docs.map((message) => {
+            const messageClass =
+              message.ownerId === currentUser.uid ? "sent" : "recieved";
+            if (message.type === "message" && message.roomId === roomId)
+              return (
+                <div className={`xyzClass ${messageClass}`}>
+                  <p className="textsender"><b>{message.ownerName} said:</b></p>
+                  <p className="chattext">{message.text}</p>
+                </div>
+              );
+            else return null;
+          })}
+          <div className="chatinput">
+            <form onSubmit={handleSend}>
+              <input
+                className="chatinputbox"
+                type="text"
+                value={formValue}
+                onChange={(e) => setFormValue(e.target.value)}
+                placeholder="Type your message here..."
+              />
+              <button type="submit">Send</button>
+            </form>
+          </div>
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 

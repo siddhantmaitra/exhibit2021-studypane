@@ -1,9 +1,6 @@
 .timerinput {
-  width: 2.2rem;
-  border: 2px solid black;
-  background-color: #d4cfcf;
+  width: 1.5rem;
   margin: 0.2rem;
-  border-radius: 10px;
   font-size: 1.2rem;
 }
 
@@ -19,12 +16,20 @@ h4 {
   font-weight: bolder;
 }
 
-/* .numba{
-    font-weight: ;
-
-} */
-.settingbttn {
+.timersetpanel {
   display: inline-block;
+}
+
+.settingbttns {
+  border: 0;
+  background: none;
+  padding: 0;
+  margin: 0;
+}
+
+.timerbttn {
+  border: 0;
+  background: none;
 }
 
 .countdown {

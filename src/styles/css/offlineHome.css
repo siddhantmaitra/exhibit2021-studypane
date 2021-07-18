@@ -10,17 +10,59 @@ h1, h2, h3, h4 {
 
 .wrapper {
   min-height: 100vh;
-  background-color: beige;
   display: block;
   padding-left: 0.2em;
   padding-right: 0.2em;
 }
 
-.navbar, .tasks, .board, .prog, .timer, .scribble {
+.wrapper-light {
+  background-color: #f5f5dc;
+}
+
+.logotext2 {
+  color: #73BC67;
+}
+
+.wrapper-dark {
+  background-color: #0E1525;
+}
+.wrapper-dark .navbar {
+  box-shadow: 0px 2px 5px 0px #000;
+}
+.wrapper-dark .msg {
+  box-shadow: 0px 2px 5px 0px #000;
+}
+.wrapper-dark .scribbletext {
+  color: #fff;
+}
+
+.tasks-dark, .board-dark, .prog-dark, .timer-dark, .scribble-dark {
   box-shadow: 0px 2px 5px 0px #888888;
   margin: 0.4em;
   border-radius: 11px;
   background-color: white;
+  background-color: #1D2333;
+  box-shadow: 0px 2px 5px 0px #000;
+  color: #fff;
+}
+.tasks-dark .eachtask, .board-dark .eachtask, .prog-dark .eachtask, .timer-dark .eachtask, .scribble-dark .eachtask {
+  background-color: #0E1525;
+  box-shadow: 0px 2px 5px 0px #000;
+}
+.tasks-dark .feather, .board-dark .feather, .prog-dark .feather, .timer-dark .feather, .scribble-dark .feather {
+  stroke: #fff;
+}
+
+.credit-dark, .logotext1-dark {
+  color: #fff;
+}
+
+.tasks-light, .board-light, .prog-light, .timer-light, .scribble-light {
+  box-shadow: 0px 2px 5px 0px #888888;
+  margin: 0.4em;
+  border-radius: 11px;
+  background-color: white;
+  background-color: #ffffff;
 }
 
 .logotext, .meeting {
@@ -37,8 +79,21 @@ h1, h2, h3, h4 {
 .appbar .appbar-bttn {
   float: right;
 }
+.appbar .mebttn, .appbar .themebttn {
+  background-color: #73BC67;
+  margin: 7px;
+  border: 0;
+  padding: 3px;
+  border-radius: 30px;
+  width: 30px;
+  height: 30px;
+}
 
 .navbar {
+  box-shadow: 0px 2px 5px 0px #888888;
+  margin: 0.4em;
+  border-radius: 11px;
+  background-color: white;
   grid-area: navbar;
   display: grid;
   grid-template-columns: 95% 5%;
@@ -50,7 +105,8 @@ h1, h2, h3, h4 {
   padding: 5px;
   text-align: center;
   margin: 2px;
-  border: none;
+  border: 0;
+  background: none;
 }
 .navbar div {
   text-align: center;
@@ -76,27 +132,68 @@ h1, h2, h3, h4 {
 
 .credit {
   grid-area: credit;
+  text-align: center;
+  margin: 1rem;
 }
 
 .chatbttn {
   width: 60px;
   height: 60px;
-  background-color: red;
+  background: #73BC67;
   border-radius: 50%;
-  box-shadow: 0 6px 10px 0 #666;
+  border: 1px solid #000;
   font-size: 40px;
   line-height: 60px;
   color: white;
   text-align: center;
   position: fixed;
   right: 1rem;
-  bottom: 1rem;
+  bottom: 2rem;
   transition: all 0.1s ease-in-out;
 }
 
 .chatbttn:hover {
-  box-shadow: 0 6px 14px 0 #666;
   transform: scale(1.05);
+}
+
+.modalbox {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90vw;
+  height: 60%;
+}
+
+.msg {
+  box-shadow: 0px 5px 15px 0px #888888;
+  border-radius: 11px;
+  padding: 0.3em;
+  overflow: auto;
+  padding-top: 2.5rem;
+}
+
+.msg {
+  border-radius: 11px;
+  background-color: white;
+  overflow: auto;
+  width: 90vw;
+  height: 55vh;
+  padding-top: 2.5rem;
+}
+
+.quitmodal, .sharemodal {
+  box-shadow: 0px 2px 5px 0px #888888;
+  margin: 0.4em;
+  border-radius: 11px;
+  background-color: white;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60vw;
+  height: 20vh;
+  padding: 1rem;
 }
 
 @media screen and (min-width: 780px) {
@@ -104,14 +201,14 @@ h1, h2, h3, h4 {
     display: grid;
     grid-template-rows: 1 fr 1fr;
     grid-template-columns: 0.1fr 0.5fr 1fr 0.1fr;
-    grid-template-areas: "appbar appbar appbar appbar" "navbar navbar navbar navbar " ". left-container right-container ." "footie footie footie footie" "credit credit credit credit";
+    grid-template-areas: "appbar appbar appbar appbar" "navbar navbar navbar navbar" ". left-container right-container ." "footie footie footie footie" "credit credit credit credit";
   }
 
   .left-container {
     grid-area: left-container;
     display: grid;
-    grid-template-rows: 2;
-    grid-area: "tasks" "tasks";
+    grid-template-rows: 1fr;
+    grid-area: "tasks";
   }
 
   .right-container {
@@ -120,6 +217,41 @@ h1, h2, h3, h4 {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 0.5fr 1.5fr;
     grid-template-areas: "prog timer" "scribble scribble";
+  }
+
+  .tasks {
+    max-height: 583.59px;
+  }
+
+  .modalbox {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60vw;
+    height: 60vh;
+  }
+
+  .msg {
+    border-radius: 11px;
+    background-color: white;
+    overflow: auto;
+    width: 60vw;
+    height: 55vh;
+    padding-top: 2.5rem;
+  }
+
+  .quitmodal, .sharemodal {
+    box-shadow: 0px 2px 5px 0px #888888;
+    margin: 0.4em;
+    border-radius: 11px;
+    background-color: white;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20vw;
+    height: 15vh;
   }
 }
 

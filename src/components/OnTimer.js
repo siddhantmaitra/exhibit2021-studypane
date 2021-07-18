@@ -330,19 +330,26 @@ class OnTimer extends React.Component {
           <div>
             {/* <button disabled={!this.state.admin} onClick={this.timerControl}> */}
             <button
+              className="timerbttn"
+              style={{border:0}}
               disabled={!this.state.admin}
               onClick={this.props.handleSyncStart}
             >
               {/* {this.state.timerStatus === "" ? "Start" : "Pause"}{" "} */}
-              {this.state.timerStatus === "running" ? "Pause" : "Start"}
+              {this.state.timerStatus === 
+                "running" ? 
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="25" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-pause-circle"><circle cx="12" cy="12" r="10"></circle><line x1="10" y1="15" x2="10" y2="9"></line><line x1="14" y1="15" x2="14" y2="9"></line></svg>  
+                : <svg xmlns="http://www.w3.org/2000/svg" width="40" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-play-circle"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
+              }
             </button>
 
             {/* <button disabled={!this.state.admin} onClick={this.reset}> */}
             <button
+              className="timerbttn"
               disabled={!this.state.admin}
               onClick={this.props.handleSyncReset}
             >
-              Reset
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-refresh-cw"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
             </button>
             {this.state.showMessage && (
               <div>Congrats you completed 1 set of Deep Work!</div>
@@ -363,13 +370,14 @@ class OnTimer extends React.Component {
             {" "}
             {/* START of div for break settings*/}
             <p className="timerheaders">Break</p>
-            <div className="settingbttn">
+            <div className="timersetpanel">
               {/* START of div for break buttons*/}
               <button
-                onClick={this.breakIncrement}
+                className="settingbttns"
+                onClick={this.breakDecrement}
                 disabled={this.state.disableInput || !this.state.admin}
               >
-                +
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="27" viewBox="0 -8 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
               </button>
               {/* START of div for break settings input*/}{" "}
               {/* <p id="session-length">{this.state.sessionLength}</p> */}
@@ -381,10 +389,12 @@ class OnTimer extends React.Component {
                 onChange={this.sessionInput}
               />
               <button
-                onClick={this.breakDecrement}
+                className="settingbttns"
+                onClick={this.breakIncrement}
                 disabled={this.state.disableInput || !this.state.admin}
+                
               >
-                -
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="27" viewBox="0 -8 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
               </button>{" "}
               {/* END of div for break buttons*/}
             </div>
@@ -393,13 +403,14 @@ class OnTimer extends React.Component {
             {" "}
             {/* START of div for work settings*/}
             <p className="timerheaders">Session</p>
-            <div className="settingbttn">
+            <div className="timersetpanel">
               {/* START of div for work buttons*/}
               <button
-                onClick={this.sessionIncrement}
+                className="settingbttns"
+                onClick={this.sessionDecrement}
                 disabled={this.state.disableInput || !this.state.admin}
               >
-                +
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="27" viewBox="0 -8 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
               </button>
               {/* START of div for work settings input*/}{" "}
               {/* <p id="session-length">{this.state.sessionLength}</p> */}
@@ -411,10 +422,12 @@ class OnTimer extends React.Component {
                 onChange={this.sessionInput || !this.state.admin}
               />
               <button
-                onClick={this.sessionDecrement}
+                className="settingbttns"
+                onClick={this.sessionIncrement}
                 disabled={this.state.disableInput || !this.state.admin}
+                
               >
-                -
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="27" viewBox="0 -8 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
               </button>{" "}
               {/* END of div for work buttons*/}
             </div>

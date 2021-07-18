@@ -1,0 +1,25 @@
+.textsender, .chattext {
+  margin: 0.3rem;
+  text-align: left;
+}
+
+.chatheader {
+  width: 50vw;
+  position: fixed;
+  top: 0;
+  background-color: white;
+  border-radius: 15px;
+  text-align: left;
+}
+
+.chatinput {
+  width: 100%;
+  height: 2rem;
+}
+
+.chatinputbox {
+  width: 55vw;
+  line-height: 1.2rem;
+}
+
+/*# sourceMappingURL=messaging.css.map */

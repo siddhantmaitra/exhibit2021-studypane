@@ -1,3 +1,4 @@
+//MIXINS//
 @mixin boxtheme{
     box-shadow:0px 2px 5px 0px #888888;
     margin: .4em;
@@ -28,7 +29,7 @@
     grid-template-columns: 0.1fr 0.5fr 1fr 0.1fr;
     grid-template-areas:
         "appbar appbar appbar appbar"
-        "navbar navbar navbar navbar "
+        "navbar navbar navbar navbar"
         ". left-container right-container ."
         "footie footie footie footie"
         "credit credit credit credit";
@@ -44,22 +45,62 @@ h1, h2, h3, h4{
     margin:0;
     padding:0.5em;
     
-    //width: auto;
-}
-// .left-container, .right-container, .rcontchild{
-//     margin: .4em;
-// }
-
-.wrapper{
-    min-height: 100vh;
-    background-color:beige;
-    @include phonelayout;
     
 }
 
 
-.navbar, .tasks,.board, .prog, .timer, .scribble{
+.wrapper{
+    min-height: 100vh;
+    
+    @include phonelayout;
+    
+}
+
+.wrapper-light{
+    background-color:#f5f5dc;
+
+}
+.logotext2{
+    color: #73BC67;
+}
+.wrapper-dark{
+    background-color: #0E1525;
+    .navbar{
+        box-shadow:0px 2px 5px 0px #000;
+    }
+    .msg{
+        //box-shadow: none;
+        // color: white;
+        // background-color: #1D2333;
+        box-shadow:0px 2px 5px 0px #000;
+
+    }
+
+    .scribbletext{
+        color: #fff;
+    }
+}
+.tasks-dark,.board-dark, .prog-dark, .timer-dark, .scribble-dark{
     @include boxtheme;
+    background-color: #1D2333;
+    box-shadow:0px 2px 5px 0px #000;
+    color: #fff;
+
+    .eachtask{
+        background-color: #0E1525;
+        box-shadow:0px 2px 5px 0px #000;
+    }
+    .feather{
+        stroke: #fff;
+    }
+
+}
+.credit-dark,.logotext1-dark{
+    color: #fff;
+}
+.tasks-light,.board-light, .prog-light, .timer-light, .scribble-light{
+    @include boxtheme;
+    background-color: #ffffff;
 }
 
 
@@ -75,9 +116,19 @@ h1, h2, h3, h4{
     .appbar-bttn{
         float: right;
     }
+    .mebttn, .themebttn{
+        background-color: #73BC67;
+        margin: 7px;
+        border:0;
+        padding:3px;
+        border-radius: 30px;
+        width: 30px;
+        height: 30px;
+    }
 }
 
 .navbar{
+    @include boxtheme;
     grid-area:navbar;
     display:grid;
     grid-template-columns: 95% 5%;
@@ -86,7 +137,8 @@ h1, h2, h3, h4{
     
     .sharebttn{
         @include bttnstyle;
-        border:none
+        border:0;
+        background: none;
     }
     div{
         text-align: center;
@@ -111,15 +163,17 @@ h1, h2, h3, h4{
 
 .credit{
     grid-area:credit;
+    text-align: center;
+    margin: 1rem;
 }
 
 .chatbttn{
     width: 60px;
     height: 60px;
-    background-color: red;
+    background:#73BC67;
     border-radius: 50%;
-    box-shadow: 0 6px 10px 0 #666;
-    
+    // box-shadow: 0 6px 10px 0 #666;
+    border:1px solid #000;
     font-size: 40px;
     line-height: 60px;
     color: white;
@@ -127,27 +181,88 @@ h1, h2, h3, h4{
     
     position: fixed;
     right: 1rem;
-    bottom: 1rem;
+    bottom: 2rem;
     
    transition: all 0.1s ease-in-out;
 }
  
 .chatbttn:hover {
-    box-shadow: 0 6px 14px 0 #666;
+    // box-shadow: 0 6px 14px 0 #666;
     transform: scale(1.05);
 }
+
+.modalbox{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    //background-color: aqua;
+    width: 90vw;
+    height:60%;
+}
+.msg{
+    box-shadow:0px  5px 15px 0px #888888;
+    // margin: .4em;
+    border-radius: 11px;
+    
+    padding: .3em;
+    overflow:auto;
+    padding-top: 2.5rem;
+    
+        
+}
+.msg{
+    //box-shadow:0px  5px 15px 0px #888888;
+    // margin: .4em;
+    border-radius: 11px;
+    background-color: white;
+    //padding: .3em;
+    overflow:auto;
+    width: 90vw;
+    height:55vh;
+    padding-top:2.5rem;
+    
+        
+}
+
+// .modal__bg {
+//     position: absolute;
+//     top: 0;
+//     right: 0;
+//     bottom: 0;
+//     left: 0;
+//     cursor: pointer;
+//   }
+  
+//   .modal-state {
+//     display: none;
+// }
+
+.quitmodal, .sharemodal{
+    @include boxtheme;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60vw;
+    height:20vh;
+    padding: 1rem;
+
+}
+
 
 @media screen and (min-width:780px){
     .wrapper{
 
         @include pclayout;
+        //background-color:beige;
 
     }
     .left-container{
         grid-area:left-container;
         display:grid;
-        grid-template-rows: 2;
-        grid-area:"tasks" "tasks";
+        grid-template-rows: 1fr ;
+        grid-area: "tasks";
     }
     .right-container{
         grid-area:right-container;
@@ -159,6 +274,42 @@ h1, h2, h3, h4{
             "scribble scribble";
 
     }
+    .tasks{
+        max-height: 583.59px;
+    }
 
-
+    .modalbox{
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        //background-color: aqua;
+        width: 60vw;
+        height:60vh;
+    }
+    .msg{
+        //box-shadow:0px  5px 15px 0px #888888;
+        // margin: .4em;
+        border-radius: 11px;
+        background-color: white;
+        //padding: .3em;
+        overflow:auto;
+        width: 60vw;
+        height:55vh;
+        padding-top:2.5rem;
+        
+            
+    }
+    
+    .quitmodal, .sharemodal{
+        @include boxtheme;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 20vw;
+        height:15vh;
+    
+    }
 }
+

@@ -15,8 +15,9 @@ const ScribblePad = () => {
 
   return (
     <div>
-      <h4>Scribble Pad</h4>
+      <h4>ScribblePad:</h4>
       <textarea
+        className="scribbletext"
         spellCheck="false"
         placeholder="Need to remember something? Note it here!"
         onChange={(e) => {

@@ -4,6 +4,7 @@ import TaskForm from "./TaskForm";
 import OnTaskList from "./OnTaskList";
 import { AuthContext } from "../contexts/AuthContext";
 import useFirestoreTask from "../hooks/useFirestoreTask";
+import "../styles/css/tasks.css";
 
 const OnTasks = ({ setDoneTasks }) => {
   const { currentUser, roomId } = useContext(AuthContext);
@@ -79,16 +80,20 @@ const OnTasks = ({ setDoneTasks }) => {
       />
 
       {!open && (
+        <div className="addtaskbttn">
         <button
+          className="bttn"
           onClick={() => {
             setOpen(true);
-          }}
-        >
-          Add task
+          }}>
+          
+          <p><b>Add task</b></p>
         </button>
+      </div>
       )}
       <div className="modal" style={{ display: open ? "block" : "none" }}>
         <button
+          className="bttn"
           onClick={() => {
             setOpen(false);
           }}

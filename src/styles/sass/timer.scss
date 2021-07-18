@@ -1,10 +1,10 @@
 .timerinput{
-    width:2.2rem;
+    width:1.5rem;
     
-    border: 2px solid black;
-    background-color: #d4cfcf;
+    // border: 0 0 2px 0 solid black;
+    // background-color: #d4cfcf;
     margin: .2rem;
-    border-radius: 10px;
+    // border-radius: 10px;
     font-size: 1.2rem;
 
 
@@ -22,13 +22,22 @@ h4{
     
     
 }
-/* .numba{
-    font-weight: ;
 
-} */
-.settingbttn{
+.timersetpanel{
     display: inline-block;
     
+    
+}
+.settingbttns{
+    border: 0;
+    background:none;
+    padding: 0;
+    margin: 0;
+}
+
+.timerbttn{
+    border: 0;
+    background: none;
 }
 
 // .setbreak{

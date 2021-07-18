@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
+import "../styles/css/login.css";
 
 const Login = () => {
   const { signin } = useContext(AuthContext);
@@ -32,12 +33,14 @@ const Login = () => {
   }
 
   return (
-    <div>
-      <p>Login</p>
+    <div className="logincontainer">
+    <div className="loginbox">
+      <p className="loginheader">Login</p>
       {error && <div>Sorry failed to find your account.</div>}
-      <form onSubmit={handleSubmit}>
+      <form className="loginform" onSubmit={handleSubmit}>
         <label htmlFor="femail">Email address</label>
-        <input
+        <input 
+          className="linput"
           type="email"
           name="femail"
           required
@@ -46,15 +49,24 @@ const Login = () => {
         />
         <label htmlFor="fpass">Password</label>
         <input
+          className="linput"
           type="password"
           name="fpass"
           required
           value={pass}
           onChange={(e) => setPass(e.target.value)}
         />
-        <input type="submit" value="Submit" disabled={loading} />
+        
+        <div className="submitbttn">
+          <input className="submitbttnstyle" type="submit" value="Submit" disabled={loading} />    
+        </div>
+      
       </form>
     </div>
+    <div className="wcredit">
+      <p >Developed by TernaryDevs</p>
+    </div>
+  </div>
   );
 };
 

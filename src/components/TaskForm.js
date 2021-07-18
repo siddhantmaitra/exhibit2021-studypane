@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "../styles/css/tasks.css";
 
 const TaskForm = ({ handleAddTask }) => {
   const [input, setInput] = useState("");

@@ -2,15 +2,15 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { projectFirestore } from "../Firebase/config";
 
-const useFirestoreAayushTasks = (CurrentUserID, colllection) => {
-  const [tasks, setDocs] = useState([]);
+const useFirestoreStatsSession = (CurrentUserID, colllection) => {
+  const [sessions, setDocs] = useState([]);
 
   useEffect(() => {
     if (CurrentUserID) {
       const unsub = projectFirestore
         .collection(colllection)
         .where("ownerId", "==", CurrentUserID)
-        // .orderBy("createdAt", "asc")
+        .orderBy("createdAt", "asc")
         .onSnapshot((snap) => {
           let documents = [];
           snap.forEach((doc) => {
@@ -21,7 +21,7 @@ const useFirestoreAayushTasks = (CurrentUserID, colllection) => {
       return () => unsub();
     }
   }, [CurrentUserID, colllection]);
-  return { tasks };
+  return { sessions };
 };
 
-export default useFirestoreAayushTasks;
+export default useFirestoreStatsSession;
